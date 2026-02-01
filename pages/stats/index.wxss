@@ -1,0 +1,256 @@
+/* 全局背景 */
+.container { 
+  padding: 20rpx; 
+  background: #f0f2f5; 
+  min-height: 100vh; 
+}
+.header-title { 
+  font-size: 32rpx; 
+  font-weight: bold; 
+  margin-bottom: 20rpx; 
+  text-align: center; 
+  color: #333; 
+}
+
+/* === 左右分栏布局 (卷王/海王) === */
+.grid-row { 
+  display: flex; 
+  justify-content: space-between; 
+  margin-bottom: 20rpx; 
+}
+.stat-box { 
+  width: 50%; 
+  background: #fff; 
+  border-radius: 16rpx; 
+  padding: 20rpx; 
+  box-sizing: border-box; 
+  box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.02);
+}
+
+/* 主题色系 */
+.blue-theme .box-title { color: #1890ff; }
+.purple-theme .box-title { color: #722ed1; }
+.orange-theme { 
+  background: linear-gradient(135deg, #fff7e6 0%, #ffffff 100%); 
+  border: 1rpx solid #ffd591; 
+}
+.pink-theme { 
+  background: linear-gradient(135deg, #fff0f6 0%, #ffffff 100%); 
+  border: 1rpx solid #ffadd2; 
+}
+
+.box-title { 
+  font-size: 30rpx; 
+  font-weight: bold; 
+  margin-bottom: 6rpx; 
+}
+.box-sub { 
+  font-size: 22rpx; 
+  color: #999; 
+  margin-bottom: 16rpx; 
+}
+
+/* 小排行榜列表 */
+.rank-item { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 12rpx; 
+  font-size: 26rpx; 
+}
+.rank-num { 
+  width: 36rpx; 
+  height: 36rpx; 
+  line-height: 36rpx; 
+  text-align: center; 
+  border-radius: 50%; 
+  font-size: 20rpx; 
+  color: #666; 
+  background: #eee; 
+  margin-right: 10rpx; 
+}
+.index-0 { background: #ffd700; color: #fff; } /* 金牌 */
+.index-1 { background: #c0c0c0; color: #fff; } /* 银牌 */
+.index-2 { background: #cd7f32; color: #fff; } /* 铜牌 */
+.rank-name { 
+  flex: 1; 
+  overflow: hidden; 
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+}
+.rank-val { 
+  font-weight: bold; 
+  color: #333; 
+}
+.empty-text { font-size: 22rpx; color: #ccc; text-align: center; margin-top: 10rpx; }
+
+/* === 横向全宽卡片 (连胜/真爱) === */
+.full-width-card { 
+  background: #fff; 
+  border-radius: 16rpx; 
+  padding: 24rpx; 
+  margin-bottom: 20rpx; 
+  box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.02);
+}
+.card-header { 
+  display: flex; 
+  align-items: center; 
+  margin-bottom: 20rpx; 
+}
+.card-emoji { 
+  font-size: 40rpx; 
+  margin-right: 20rpx; 
+}
+.card-title { 
+  font-size: 30rpx; 
+  font-weight: bold; 
+  color: #333; 
+}
+.card-desc { 
+  font-size: 22rpx; 
+  color: #888; 
+}
+
+/* === 连胜横向滚动 === */
+.streak-scroll { 
+  width: 100%; 
+  white-space: nowrap; 
+}
+.streak-list { 
+  display: flex; 
+}
+.streak-item { 
+  display: inline-flex; 
+  flex-direction: column; 
+  align-items: center; 
+  background: #fff; 
+  border: 1rpx solid #eee; 
+  border-radius: 12rpx; 
+  padding: 16rpx; 
+  margin-right: 20rpx; 
+  width: 120rpx; 
+  box-shadow: 0 4rpx 8rpx rgba(0,0,0,0.02);
+}
+.fire-icon { 
+  font-size: 32rpx; 
+  margin-bottom: 4rpx; 
+}
+.s-count { 
+  font-size: 36rpx; 
+  font-weight: bold; 
+  color: #fa541c; 
+}
+.s-name { 
+  font-size: 24rpx; 
+  color: #666; 
+  margin-top: 4rpx; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+  width: 100%; 
+  text-align: center;
+}
+
+/* === CP 列表 (真爱) === */
+.cp-list { 
+  display: flex; 
+  flex-direction: column; 
+}
+.cp-item { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  background: rgba(255, 255, 255, 0.6); 
+  padding: 12rpx 0; 
+  border-bottom: 1rpx dashed #ffadd2; 
+}
+.cp-item:last-child { 
+  border-bottom: none; 
+}
+.heart { 
+  font-size: 24rpx; 
+  margin: 0 10rpx; 
+  animation: heartbeat 1.5s infinite; 
+}
+.cp-name { 
+  font-weight: bold; 
+  font-size: 28rpx; 
+  color: #333; 
+}
+.cp-count { 
+  font-size: 24rpx; 
+  color: #eb2f96; 
+  margin-left: 10rpx; 
+}
+.empty-small { 
+  text-align: center; 
+  font-size: 24rpx; 
+  color: #ccc; 
+  padding: 20rpx; 
+}
+
+/* === 严父/福星榜 样式 === */
+.section { margin-bottom: 40rpx; }
+.section-title { 
+  font-size: 34rpx; 
+  font-weight: bold; 
+  margin-bottom: 10rpx; 
+  display: flex; 
+  align-items: center; 
+}
+.desc { 
+  font-size: 24rpx; 
+  color: #999; 
+  margin-bottom: 20rpx; 
+  margin-left: 10rpx; 
+}
+.red { color: #d81e06; }
+.green { color: #07c160; }
+
+.card { 
+  background: #fff; 
+  border-radius: 16rpx; 
+  padding: 30rpx; 
+  margin-bottom: 20rpx; 
+  box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.05); 
+}
+.highlight { 
+  font-size: 30rpx; 
+  margin-bottom: 12rpx; 
+  display: flex; 
+  align-items: center; 
+  flex-wrap: wrap; 
+}
+.winner, .loser { 
+  font-weight: bold; 
+  font-size: 32rpx; 
+  padding: 0 8rpx; 
+}
+.winner { color: #07c160; } 
+.loser { color: #666; text-decoration: line-through; } 
+.rel-text { 
+  font-size: 26rpx; 
+  color: #888; 
+  margin: 0 8rpx; 
+}
+.detail { 
+  font-size: 24rpx; 
+  color: #aaa; 
+  background: #f8f8f8; 
+  padding: 8rpx 16rpx; 
+  border-radius: 8rpx; 
+  display: inline-block; 
+}
+.empty { 
+  text-align: center; 
+  color: #ccc; 
+  font-size: 28rpx; 
+  margin-top: 40rpx; 
+}
+
+/* 动画定义 */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}

@@ -1,0 +1,53 @@
+<view class="container">
+  <view class="header">
+    <view class="title">🏆 录入冠军</view>
+    <view class="desc">选择赛事 -> 系统自动筛选选手</view>
+  </view>
+
+  <view class="form-group">
+    
+    <!-- 1. 选择赛事 -->
+    <view class="input-item">
+      <view class="label">所属赛事</view>
+      <picker range="{{tourNames}}" bindchange="bindTourChange">
+        <view class="picker-val {{tourIndex===null?'placeholder':''}}">
+          {{tourIndex !== null ? tourNames[tourIndex] : '点击选择赛事(检索选手)'}}
+        </view>
+      </picker>
+    </view>
+
+    <!-- 2. 选择冠军 (依赖上面) -->
+    <view class="input-item">
+      <view class="label">冠亚季军得主</view>
+      <picker range="{{playerNames}}" bindchange="bindPlayerChange" disabled="{{playerList.length === 0}}">
+        <view class="picker-val {{playerIndex===null?'placeholder':''}}">
+          <block wx:if="{{playerList.length === 0}}">请先选择赛事👆</block>
+          <block wx:else>{{playerIndex !== null ? playerNames[playerIndex] : '点击选择选手'}}</block>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 3. 头衔 -->
+    <view class="input-item">
+      <view class="label">获得头衔</view>
+      <input class="input" 
+             placeholder="例：单打王 / 团体冠军" 
+             value="{{titleName}}" 
+             data-field="titleName"
+             bindinput="bindInput"/>
+    </view>
+
+    <!-- 4. 年份 -->
+    <view class="input-item">
+      <view class="label">年份</view>
+      <input class="input" 
+             type="number"
+             value="{{year}}" 
+             data-field="year"
+             bindinput="bindInput"/>
+    </view>
+
+  </view>
+
+  <button class="btn-submit" bindtap="submit">✅ 确认录入</button>
+</view>

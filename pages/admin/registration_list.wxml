@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="header">
+    <view class="title">📋 {{tourTitle}}</view>
+    <view class="sub">已报名: {{list.length}} 人</view>
+  </view>
+
+  <view class="list">
+    <block wx:for="{{list}}" wx:key="_id">
+      <view class="item">
+        <text class="name">{{index + 1}}. {{item.player_name}}</text>
+        <button class="btn-del" size="mini" bindtap="removePlayer" data-id="{{item._id}}" data-name="{{item.player_name}}">移出</button>
+      </view>
+    </block>
+    <view wx:if="{{list.length === 0}}" class="empty">暂无报名</view>
+  </view>
+
+  <!-- 底部补录按钮 -->
+  <view class="footer">
+    <!-- 核心修复：用 picker 包裹按钮，绑定 bindchange 事件 -->
+    <picker mode="selector" range="{{allNames}}" bindchange="adminAddPlayer">
+      <button class="btn-add">➕ 管理员手动补录</button>
+    </picker>
+  </view>
+</view>

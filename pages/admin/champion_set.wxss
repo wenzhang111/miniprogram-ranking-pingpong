@@ -1,0 +1,62 @@
+.container {
+  padding: 30rpx;
+  background: #f6f6f6;
+  min-height: 100vh;
+}
+
+.header {
+  margin-bottom: 40rpx;
+  text-align: center;
+}
+.title { font-size: 40rpx; font-weight: bold; color: #333; }
+.desc { font-size: 26rpx; color: #888; margin-top: 10rpx; }
+
+.form-group {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 0 30rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.05);
+}
+
+.input-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+.input-item:last-child { border-bottom: none; }
+
+.label {
+  width: 180rpx;
+  font-weight: bold;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.input, picker {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.picker-val {
+  width: 100%;
+}
+
+/* 占位符颜色 */
+.placeholder {
+  color: #ccc;
+}
+
+.btn-submit {
+  margin-top: 60rpx;
+  background: #07c160;
+  color: #fff;
+  border-radius: 40rpx;
+  font-weight: bold;
+  box-shadow: 0 4rpx 10rpx rgba(7, 193, 96, 0.3);
+}
+
+.btn-submit:active {
+  background: #06ad56;
+}

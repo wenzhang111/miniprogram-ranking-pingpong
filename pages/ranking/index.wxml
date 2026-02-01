@@ -1,0 +1,64 @@
+<view class="container">
+  <view class="header-box">
+    <view class="title">🏆 实时积分榜</view>
+    <view class="sub-title">当前共有 {{playerList.length}} 名选手</view>
+  </view>
+
+  <view class="list-header">
+    <text class="col-rank">排名</text>
+    <text class="col-name">姓名</text>
+    <text class="col-score">积分</text>
+  </view>
+
+  <scroll-view scroll-y class="list-body">
+    <block wx:for="{{playerList}}" wx:key="_id">
+      <!-- 🔴 重点修复：检查这一行有没有 bindtap -->
+      <view class="list-item" bindtap="goToPlayerDetail" data-id="{{item.player_id}}">
+        
+        <text class="col-rank index-{{index}}">{{index + 1}}</text>
+        
+        <view class="col-name">
+          <view class="name-row">
+            <text class="name-text">{{item.name}}</text>
+            <text class="id-text">ID:{{item.player_id}}</text>
+          </view>
+          
+          <view class="tags-row" wx:if="{{item.titles && item.titles.length > 0}}">
+            <block wx:for="{{item.titles}}" wx:key="*this" wx:for-item="tag">
+              <text class="champion-tag">👑 {{tag}}</text>
+            </block>
+          </view>
+        </view>
+        
+        <text class="col-score">{{item.score}}</text>
+      </view>
+    </block>
+    <view wx:if="{{playerList.length === 0}}" class="empty-tip">暂无数据</view>
+  </scroll-view>
+
+  <view class="footer-panel">
+    <view class="tool-row">
+      <view class="tool-item" bindtap="goToHistory">
+        <view class="icon">📅</view>
+        <text>历史记录</text>
+      </view>
+      <view class="tool-item" bindtap="goToStats">
+        <view class="icon">📊</view>
+        <text>趣味统计</text>
+      </view>
+    </view>
+
+    <button class="btn-main" bindtap="goToMyMatches">
+      📝 我的赛程 / 录入比分
+    </button>
+
+    <!-- 管理员专区 -->
+    <view wx:if="{{isAdmin}}" class="admin-zone">
+      <view class="admin-title">--- 赛事后台管理 ---</view>
+      <view class="admin-row">
+        <!-- 统一入口 -->
+        <button class="btn-admin btn-black" bindtap="goToTourList">📂 赛事列表 / 发布 / 控台</button>
+      </view>
+    </view>
+  </view>
+</view>

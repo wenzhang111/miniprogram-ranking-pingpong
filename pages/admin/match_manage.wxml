@@ -1,0 +1,69 @@
+<view class="container">
+  <view class="header">
+    <view class="title">👮‍♂️ 赛程总控台</view>
+    <view class="desc">管理员可在此代录或撤销比赛结果</view>
+  </view>
+
+  <!-- === 新增：状态切换 Tab === -->
+  <view class="tabs">
+    <view class="tab-item {{currentStatus===0 ? 'active' : ''}}" bindtap="switchTab" data-status="{{0}}">
+      ⏳ 待录入
+    </view>
+    <view class="tab-item {{currentStatus===1 ? 'active' : ''}}" bindtap="switchTab" data-status="{{1}}">
+      ✅ 已录入 (可撤销)
+    </view>
+  </view>
+  <!-- ======================== -->
+
+  <scroll-view scroll-y class="list">
+    <block wx:for="{{matchList}}" wx:key="_id">
+      <view class="match-card">
+        <view class="card-top">
+          <text class="tag">{{item.tournament}}</text>
+          <text class="round">{{item.group || item.round}}</text>
+        </view>
+        
+        <view class="vs-box">
+          <!-- 选手1 (如果赢了加个绿色样式) -->
+          <view class="player {{item.winner==item.player1 ? 'winner-text' : ''}}">
+            <text class="name">{{item.player1_name}}</text>
+            <text wx:if="{{item.winner==item.player1}}">👑</text>
+          </view>
+          
+          <view class="vs-text">VS</view>
+          
+          <!-- 选手2 -->
+          <view class="player {{item.winner==item.player2 ? 'winner-text' : ''}}">
+            <text class="name">{{item.player2_name}}</text>
+            <text wx:if="{{item.winner==item.player2}}">👑</text>
+          </view>
+        </view>
+        
+        <!-- === 按钮逻辑：根据当前 Tab 显示不同按钮 === -->
+        
+        <!-- 情况1：待录入 -> 显示录入按钮 -->
+        <button wx:if="{{currentStatus === 0}}" class="btn-record" bindtap="openResultModal" data-idx="{{index}}">
+          👉 录入结果
+        </button>
+
+        <!-- 情况2：已录入 -> 显示撤销按钮 (红色) -->
+        <button wx:if="{{currentStatus === 1}}" class="btn-record btn-revoke" bindtap="revokeMatch" data-idx="{{index}}">
+          ↩️ 撤销重置
+        </button>
+        <!-- ======================================== -->
+        
+      </view>
+    </block>
+
+    <view wx:if="{{matchList.length === 0}}" class="empty">
+      {{currentStatus===0 ? '当前没有待办比赛' : '近期没有完赛记录'}}
+    </view>
+  </scroll-view>
+
+  <!-- 补录按钮只在待录入显示 -->
+  <view class="footer" wx:if="{{currentStatus===0}}">
+    <picker mode="selector" range="{{allNames}}" bindchange="adminAddPlayer">
+      <button class="btn-add">➕ 管理员手动补录</button>
+    </picker>
+  </view>
+</view>

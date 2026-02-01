@@ -1,0 +1,51 @@
+page { background: #f6f6f6; padding: 20px; box-sizing: border-box; }
+
+.header {
+  background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 20px; text-align: center;
+}
+.title { font-size: 20px; font-weight: bold; margin-bottom: 5px; }
+.status { color: #07c160; font-weight: bold; font-size: 14px; }
+.count { color: #888; font-size: 12px; margin-top: 5px; }
+
+.card {
+  background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.section-title {
+  font-size: 16px; font-weight: bold; margin-bottom: 15px; border-left: 4px solid #07c160; padding-left: 10px;
+}
+
+.desc { color: #666; font-size: 14px; margin-bottom: 15px; line-height: 1.5; }
+
+/* 管理员面板 */
+.admin-panel { background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px dashed #ccc; }
+
+.input-row {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; font-size: 14px; color: #333;
+}
+.input-small {
+  background: #fff; width: 60px; padding: 5px; text-align: center; border: 1px solid #ddd; border-radius: 4px;
+}
+
+/* 种子设置区域 */
+.seed-section { margin-top: 10px; border-top: 1px solid #eee; padding-top: 10px; }
+.seed-label { font-weight: bold; font-size: 14px; display: block; margin-bottom: 5px; }
+.sub-text { font-size: 12px; color: #999; margin-bottom: 10px; }
+
+.seed-list { background: #fff; border: 1px solid #eee; border-radius: 6px; margin-bottom: 10px; max-height: 200px; overflow-y: scroll; }
+.seed-item { display: flex; justify-content: space-between; padding: 8px 10px; border-bottom: 1px solid #f5f5f5; font-size: 14px; }
+.seed-left { display: flex; align-items: center; }
+.seed-rank { color: #07c160; font-weight: bold; margin-right: 10px; width: 40px; }
+.seed-del { color: #ff4d4f; font-weight: bold; padding: 0 10px; }
+.seed-empty { text-align: center; color: #ccc; padding: 10px; font-size: 12px; }
+
+.btn-add-seed { background: #333; color: #ffd700; font-size: 12px; width: 100%; }
+
+.divider { height: 1px; background: #eee; margin: 20px 0; }
+.tips-red { font-size: 12px; color: #e64340; margin-bottom: 5px; font-weight: bold; }
+
+/* 按钮 */
+.btn-main { background: #07c160; color: #fff; font-size: 15px; width: 100%; border-radius: 50px; }
+.btn-sub { background: #fff; color: #333; border: 1px solid #ddd; font-size: 15px; width: 100%; border-radius: 50px; margin-bottom: 10px; }
+.btn-red { background: #e64340 !important; }
+.btn-dark { background: #333 !important; color: #fff !important; border: none; }

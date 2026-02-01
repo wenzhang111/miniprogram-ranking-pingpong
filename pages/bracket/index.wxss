@@ -1,0 +1,124 @@
+page { 
+  background-color: #1a1a1a; 
+  color: #fff; 
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container { height: 100%; display: flex; flex-direction: column; padding: 0; }
+
+.header { padding: 10px; text-align: center; background: #222; z-index: 10; }
+.title { font-size: 18px; font-weight: bold; color: #ffd700; }
+.sub { font-size: 10px; color: #666; }
+
+/* === 横向滚动区域 === */
+.bracket-scroll { 
+  width: 100%; 
+  flex: 1; /* 占满剩余高度 */
+  white-space: nowrap; /* 关键：横向排列 */
+}
+
+.bracket-wrapper {
+  display: flex; /* 让轮次横向排 */
+  padding: 20px;
+  min-height: 80%; /* 撑开高度 */
+}
+
+/* === 每一列 (轮次) === */
+.round-column {
+  width: 220px; /* 每列固定宽度 */
+  flex-shrink: 0; /* 不许压缩 */
+  margin-right: 40px; /* 列之间的间距 */
+  display: flex;
+  flex-direction: column;
+}
+
+.round-title {
+  text-align: center;
+  color: #07c160;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  height: 20px;
+}
+
+/* === 比赛列表容器 === */
+.match-list {
+  flex: 1; /* 占满列的高度 */
+  display: flex;
+  flex-direction: column;
+  /* ✨魔法：让卡片在垂直方向均匀分布，形成树状感 */
+  justify-content: space-around; 
+}
+
+/* === 卡片包裹 === */
+.match-card-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* === 核心卡片 === */
+.match-item {
+  width: 100%;
+  background: #333;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+  transition: all 0.2s;
+}
+.match-item:active { background: #444; }
+.match-item.finished { border-color: #ffd700; background: #2a2a2a; }
+
+.player-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #aaa;
+  padding: 4px 0;
+  border-bottom: 1px solid #3c3c3c;
+}
+.player-row:last-child { border-bottom: none; }
+
+.player-row.win { color: #ffd700; font-weight: bold; }
+.p-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 80%; }
+
+.score-tag {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  background: #555;
+  font-size: 8px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* === 连接线 (向右的小尾巴) === */
+.connector {
+  position: absolute;
+  right: -20px; /* 伸出去 */
+  top: 50%;
+  width: 20px;
+  height: 1px;
+  background: #555;
+}
+
+/* 底部按钮 */
+.footer-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  z-index: 999;
+}
+.btn-next {
+  background: linear-gradient(to right, #ffd700, #ffaa00);
+  color: #000;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(255, 170, 0, 0.4);
+}

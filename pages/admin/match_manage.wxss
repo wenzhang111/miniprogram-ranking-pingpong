@@ -1,0 +1,19 @@
+page { background: #f0f2f5; padding-bottom: 30px; }
+.container { padding: 0; }
+
+.header { background: #333; padding: 20px; color: white; margin-bottom: 20px; }
+.title { font-size: 20px; font-weight: bold; margin-bottom: 5px; }
+.desc { font-size: 12px; opacity: 0.8; }
+
+.list { padding: 0 15px; }
+.match-card { background: white; border-radius: 10px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
+.card-top { display: flex; justify-content: space-between; font-size: 12px; color: #999; margin-bottom: 15px; border-bottom: 1px solid #f5f5f5; padding-bottom: 8px; }
+.tag { color: #07c160; font-weight: bold; }
+
+.vs-box { display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
+.player { flex: 1; text-align: center; font-size: 16px; font-weight: bold; color: #333; }
+.vs-text { font-style: italic; color: #ddd; font-weight: bold; margin: 0 10px; }
+
+.btn-record { background: #333; color: white; font-size: 14px; border-radius: 50px; }
+.empty { text-align: center; color: #999; margin-top: 50px; }

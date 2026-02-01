@@ -1,0 +1,104 @@
+、<view class="container">
+  
+  <view class="top-navbar">
+    <view class="nav-item {{curTab==0 ? 'active' : ''}}" bindtap="switchTab" data-idx="0">
+      <text class="nav-icon">📋</text> <text>赛程管理</text>
+    </view>
+    <view class="nav-item {{curTab==1 ? 'active' : ''}}" bindtap="switchTab" data-idx="1">
+      <text class="nav-icon">🏆</text> <text>积分排名</text>
+    </view>
+  </view>
+  <view class="nav-placeholder"></view>
+
+  <!-- Tab 0: 赛程管理 -->
+  <view wx:if="{{curTab == 0}}" class="tab-content">
+    <view class="filter-container">
+      <view class="filter-capsule">
+        <view class="filter-item {{matchStatus==0 ? 'filter-active' : ''}}" bindtap="switchStatus" data-status="0">⏳ 待录入</view>
+        <view class="filter-item {{matchStatus==1 ? 'filter-active' : ''}}" bindtap="switchStatus" data-status="1">✅ 已录入</view>
+      </view>
+    </view>
+    <scroll-view scroll-y class="match-list">
+      <block wx:for="{{matchList}}" wx:key="_id">
+        <view class="match-card">
+          <view class="card-header">
+            <view class="tour-tag">{{item.tournament}}</view>
+            <view class="round-tag">{{item.group || item.round}}</view>
+          </view>
+          <view class="vs-row">
+            <view class="player p1 {{item.winner==item.player1?'is-winner':''}}">
+              <text class="p-name">{{item.player1_name}}</text>
+              <text wx:if="{{item.winner==item.player1}}" class="win-mark">👑</text>
+            </view>
+            <view class="vs-center">VS</view>
+            <view class="player p2 {{item.winner==item.player2?'is-winner':''}}">
+              <text class="p-name">{{item.player2_name}}</text>
+              <text wx:if="{{item.winner==item.player2}}" class="win-mark">👑</text>
+            </view>
+          </view>
+          <view class="action-row">
+            <button wx:if="{{matchStatus == 0}}" class="btn-action btn-green" bindtap="handleMatchClick" data-idx="{{index}}">✏️ 录入结果</button>
+            <button wx:if="{{matchStatus == 1}}" class="btn-action btn-red" bindtap="handleMatchClick" data-idx="{{index}}">↩️ 撤销重置</button>
+          </view>
+        </view>
+      </block>
+      <view wx:if="{{matchList.length === 0}}" class="empty-state">
+        <text class="empty-text">{{matchStatus==0 ? '没有待录入的比赛' : '没有已完赛记录'}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- Tab 1: 积分排名 -->
+  <view wx:if="{{curTab == 1}}" class="tab-content">
+    
+    <view class="search-box">
+      <!-- 1. 赛事选择 -->
+      <view class="picker-row">
+        <view class="picker-label">赛事</view>
+        <picker range="{{tourNames}}" bindchange="bindTourPickerChange">
+          <view class="picker-display {{tourIndex===null?'placeholder':''}}">
+            <text>{{tourIndex !== null ? tourNames[tourIndex] : '点击选择赛事'}}</text>
+            <text class="arrow-icon">▼</text>
+          </view>
+        </picker>
+      </view>
+
+      <!-- 2. 分组选择 (新增) -->
+      <view class="picker-row">
+        <view class="picker-label">分组</view>
+        <picker range="{{groupList}}" bindchange="bindGroupPickerChange" disabled="{{tourIndex === null}}">
+          <view class="picker-display {{tourIndex===null?'disabled':''}}">
+            <text>{{groupList[groupIndex]}}</text>
+            <text class="arrow-icon">▼</text>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <!-- 排名列表 -->
+    <view class="rank-header" wx:if="{{rankList.length > 0}}">
+      <text class="th rk">排名</text>
+      <text class="th nm">选手</text>
+      <text class="th pt">积分</text>
+      <text class="th wl">胜/负</text>
+    </view>
+
+    <view class="rank-list">
+      <block wx:for="{{rankList}}" wx:key="name">
+        <view class="rank-item {{index<3 ? 'top3' : ''}}">
+          <view class="td rk">
+            <text class="rank-badge rank-{{index+1}}">{{index+1}}</text>
+          </view>
+          <text class="td nm">{{item.name}}</text>
+          <text class="td pt">{{item.points}}</text>
+          <text class="td wl">{{item.win}}/{{item.lose}}</text>
+        </view>
+      </block>
+    </view>
+    
+    <view wx:if="{{rankList.length === 0}}" class="empty-state">
+      <text class="empty-text">👆 请选择赛事和分组</text>
+    </view>
+  </view>
+
+</view>

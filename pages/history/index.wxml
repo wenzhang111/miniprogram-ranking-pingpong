@@ -1,0 +1,41 @@
+<view class="container">
+  <!-- 顶部切换栏 -->
+  <view class="tab-header">
+    <view class="tab-item {{curTab==0 ? 'active' : ''}}" bindtap="switchTab" data-idx="0">👤 我的记录</view>
+    <!-- 只有管理员可见 -->
+    <view wx:if="{{isAdmin}}" class="tab-item {{curTab==1 ? 'active' : ''}}" bindtap="switchTab" data-idx="1">🌍 全部记录</view>
+  </view>
+
+  <scroll-view scroll-y class="history-list">
+    <block wx:for="{{matchList}}" wx:key="_id">
+      <view class="match-card">
+        <view class="match-header">
+          <text class="date">{{item.formatDate}}</text>
+          <text class="tag">{{item.tournament}} {{item.group||item.round}}</text>
+        </view>
+        
+        <view class="match-body">
+          <!-- 选手1 -->
+          <view class="player-row {{item.winner==item.player1 ? 'win' : 'lose'}}">
+            <text class="p-name">{{item.player1_name}}</text>
+            <text class="p-delta">{{item.delta1 > 0 ? '+' + item.delta1 : item.delta1}}</text>
+          </view>
+          
+          <view class="vs">VS</view>
+
+          <!-- 选手2 -->
+          <view class="player-row {{item.winner==item.player2 ? 'win' : 'lose'}}">
+            <text class="p-name">{{item.player2_name}}</text>
+            <text class="p-delta">{{item.delta2 > 0 ? '+' + item.delta2 : item.delta2}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 空状态提示 -->
+    <view wx:if="{{matchList.length === 0}}" class="empty">
+      <text wx:if="{{curTab==0}}">你还没有参加过任何已完赛的比赛</text>
+      <text wx:else>暂无任何历史记录</text>
+    </view>
+  </scroll-view>
+</view>

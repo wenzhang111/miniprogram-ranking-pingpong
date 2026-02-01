@@ -1,0 +1,79 @@
+<view class="container">
+  <!-- 1. 轮播图区域 -->
+  <view class="swiper-box">
+    <swiper indicator-dots="true" autoplay="true" interval="5000" circular="true">
+      <block wx:for="{{banners}}" wx:key="_id">
+        <swiper-item>
+          <image src="{{item.url}}" mode="aspectFill" class="slide-image" />
+          <view wx:if="{{isAdmin}}" class="del-btn" catchtap="deleteImage" data-id="{{item._id}}" data-fileid="{{item.url}}">×</view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view wx:if="{{isAdmin}}" class="upload-btn" bindtap="uploadBanner">📷 更换封面</view>
+  </view>
+
+  <!-- 2. 赛事报名栏 -->
+  <view class="section">
+    <view class="section-title">
+      <text>🔥 赛事报名</text>
+    </view>
+    
+    <block wx:for="{{tournaments}}" wx:key="_id">
+      <!-- 增加点击事件 -->
+      <view class="tour-card" bindtap="viewTourDetail" data-id="{{item._id}}" data-title="{{item.title}}" data-status="{{item.status}}">
+        <view class="tour-info">
+          <!-- ... 里面的内容不变 ... -->
+          
+          <!-- 标题行 + 管理员操作区 -->
+          <view class="tour-header-row" style="display:flex; justify-content:space-between; align-items:flex-start;">
+             <view class="tour-title">
+               {{item.title}}
+               <!-- 暂停状态标签 -->
+               <text wx:if="{{item.status == 2}}" style="font-size:10px; background:#999; color:white; padding:2px 5px; border-radius:4px; vertical-align: middle; margin-left: 5px;">已暂停</text>
+             </view>
+             
+             <!-- 管理员专属按钮组 -->
+             <view wx:if="{{isAdmin}}" style="display:flex; flex-direction:column; align-items:flex-end; gap:5px;">
+             <!-- 新增：进入总控台 -->
+            <view style="color:blue; font-size:12px; font-weight:bold;" 
+                      catchtap="goToControl" 
+                      data-id="{{item._id}}">🎮 总控台</view>
+                <!-- 1. 管理名单 -->
+                <view style="color:#07c160; font-size:12px; font-weight:bold;" 
+                      catchtap="manageTour" 
+                      data-id="{{item._id}}" 
+                      data-title="{{item.title}}">⚙️ 名单</view>
+                
+                <!-- 2. 暂停/开启开关 -->
+                <view style="color:{{item.status==1 ? '#e6a23c' : '#07c160'}}; font-size:12px; font-weight:bold;" 
+                      catchtap="toggleStatus" 
+                      data-id="{{item._id}}" 
+                      data-status="{{item.status}}">
+                      {{item.status==1 ? '⏸ 暂停' : '▶ 开启'}}
+                </view>
+             </view>
+          </view>
+          
+          <view class="tour-date">⏰ 时间: {{item.date}}</view>
+          <view class="tour-desc">{{item.desc}}</view>
+          <view class="tour-count">已报名: {{item.count || 0}} 人</view>
+        </view>
+        
+        <!-- 报名按钮逻辑：
+             1. 还没登录 -> 显示立即报名
+             2. 已报名 -> 变灰显示已报名
+             3. 未报名但暂停了 -> 变灰显示暂停报名
+             4. 未报名且开启 -> 显示立即报名
+        -->
+        <button class="btn-sign {{item.isSigned || item.status!=1 ? 'disabled' : ''}}" 
+                bindtap="{{(item.isSigned || item.status!=1) ? '' : 'signUp'}}" 
+                data-id="{{item._id}}" 
+                data-idx="{{index}}">
+          {{item.isSigned ? '已报名' : (item.status==2 ? '暂停报名' : '立即报名')}}
+        </button>
+      </view>
+    </block>
+
+    <view wx:if="{{tournaments.length === 0}}" class="empty">暂无正在报名的赛事</view>
+  </view>
+</view>

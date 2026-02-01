@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="title">📅 创建小组循环赛</view>
+
+  <view class="card">
+    <view class="label">赛事名称</view>
+    <input class="input" placeholder="例如: 2026春季赛" bindinput="bindTour" />
+    
+    <view class="label">小组名称</view>
+    <input class="input" placeholder="例如: A组" bindinput="bindGroup" />
+  </view>
+  <!-- 新增：筛选器 -->
+  <view class="card">
+    <view class="label">快速筛选：导入已报名选手</view>
+    <picker mode="selector" range="{{tourNames}}" bindchange="filterByTour">
+      <view class="input" style="color: blue;">
+        {{selectedTourName || '⬇️ 点击选择赛事进行筛选'}}
+      </view>
+    </picker>
+  </view>
+
+ 
+  <view class="card">
+    <view class="label">请选择本组球员 (至少3人)</view>
+    <checkbox-group bindchange="bindPlayersChange">
+      <view class="player-list">
+        <block wx:for="{{players}}" wx:key="_id">
+          <label class="checkbox-item">
+            <checkbox value="{{index}}" />
+            <text>{{item.name}} ({{item.score}}分)</text>
+          </label>
+        </block>
+      </view>
+    </checkbox-group>
+  </view>
+
+  <view class="info">
+    已选 {{selectedIndices.length}} 人，
+    将自动生成 {{matchCount}} 场比赛
+  </view>
+
+  <button class="btn-main" bindtap="generateSchedule">🚀 一键生成赛程</button>
+</view>

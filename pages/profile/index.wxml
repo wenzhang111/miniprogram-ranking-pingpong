@@ -1,0 +1,93 @@
+<view class="container">
+  <!-- 场景A：未注册 -->
+  <view class="register-box" wx:if="{{!myInfo}}">
+    <view class="logo">🏓</view>
+    <view class="reg-title">加入社区</view>
+    <view class="reg-desc">开启你的乒乓球生涯数据记录</view>
+    
+    <input class="reg-input" placeholder="请输入姓名或昵称" bindinput="bindName"/>
+    <input class="reg-input" placeholder="个性签名(选填)" bindinput="bindPhone"/>
+    
+    <button class="reg-btn" bindtap="register">一键激活身份</button>
+  </view>
+
+  <!-- 场景B：个人生涯主页 -->
+  <view class="profile-container" wx:else>
+    
+    <!-- 1. 头部卡片 -->
+    <view class="header-card">
+      <view class="user-row">
+        <view class="avatar">{{myInfo.name[0]}}</view>
+        <view class="user-info">
+          <view class="user-name">{{myInfo.name}}</view>
+          <view class="user-id">ID: {{myInfo.player_id}}</view>
+        </view>
+        <view class="score-display">
+          <text class="score-num">{{myInfo.score}}</text>
+          <text class="score-label">积分</text>
+        </view>
+      </view>
+      
+      <view class="signature">{{myInfo.phone || '这个人很懒，什么都没写'}}</view>
+    </view>
+
+    <!-- 2. 数据仪表盘 -->
+    <view class="stats-panel">
+      <view class="stat-box">
+        <view class="val">{{stats.totalMatches}}</view>
+        <view class="key">总场次</view>
+      </view>
+      <view class="stat-box border-lr">
+        <view class="val">{{stats.winCount}}</view>
+        <view class="key">胜场</view>
+      </view>
+      <view class="stat-box">
+        <view class="val gold">{{stats.winRate}}</view>
+        <view class="key">总胜率</view>
+      </view>
+    </view>
+
+    <!-- 3. 荣誉室 -->
+    <view class="trophy-room" wx:if="{{stats.titles.length > 0}}">
+      <view class="panel-title">🏆 荣誉殿堂</view>
+      <view class="trophy-list">
+        <block wx:for="{{stats.titles}}" wx:key="*this">
+          <view class="trophy-tag">
+            <text>🥇 {{item}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 4. 功能菜单 -->
+    <view class="menu-group">
+      <view class="menu-item" bindtap="goToHistory">
+        <text class="menu-icon">📅</text>
+        <text class="menu-text">生涯对战记录</text>
+        <text class="arrow">></text>
+      </view>
+      <view class="menu-item" bindtap="openEditModal">
+        <text class="menu-icon">✏️</text>
+        <text class="menu-text">编辑个性签名</text>
+        <text class="arrow">></text>
+      </view>
+      <button class="menu-item btn-reset" open-type="contact">
+        <text class="menu-icon">💬</text>
+        <text class="menu-text">联系赛事管理员</text>
+        <text class="arrow">></text>
+      </button>
+    </view>
+
+    <!-- 5. 管理员区域 -->
+    <view wx:if="{{isAdmin}}" class="admin-area">
+      <button class="admin-btn" bindtap="goToChampionSet">🏆 管理员：录入冠军历史</button>
+    </view>
+
+    <!-- === 6. 开发者信息 (新增) === -->
+    <view class="footer-info">
+      <view>开发者：西南交通大学 文章名</view>
+      <view bindtap="copyVx">相关问题联系方式 vx：w353088286</view>
+    </view>
+
+  </view>
+</view>

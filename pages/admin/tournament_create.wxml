@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="card">
+    <view class="header">
+      <view class="title">📅</view>
+    </view>
+    
+    <view class="form-group">
+      <view class="label">赛事名称</view>
+      <input class="input-box" placeholder="如：周赛第8期" bindinput="bindTitle" />
+    </view>
+
+    <view class="form-group">
+      <view class="label">比赛时间</view>
+      <input class="input-box" placeholder="如：周六 14:00" bindinput="bindDate" />
+    </view>
+
+    <button class="btn-submit" bindtap="submit">加入列表</button>
+  </view>
+</view>

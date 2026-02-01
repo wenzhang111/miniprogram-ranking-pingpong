@@ -1,0 +1,118 @@
+<view class="container">
+  <!-- 顶部公共信息 -->
+  <view class="header">
+    <view class="title">{{tour.title}}</view>
+    <view class="status">当前阶段: {{statusText[tour.stage || 0]}}</view>
+    <view class="count">已报名: {{regList.length}} 人</view>
+  </view>
+
+  <!-- ============================================== -->
+  <!-- 阶段 0: 报名中 -> 准备开始小组赛 -->
+  <!-- ============================================== -->
+  <view class="card" wx:if="{{tour.stage == 0 || !tour.stage}}">
+    <view class="section-title">🏆 赛事准备 / 分组设定</view>
+    
+    <!-- === 管理员操作区 === -->
+    <block wx:if="{{isAdmin}}">
+      <view class="admin-panel">
+        
+        <!-- 基础配置 -->
+        <view class="input-row">
+          <text>每组人数 (3-8人):</text>
+          <input class="input-small" type="number" value="{{groupSize}}" bindinput="bindGroupSize" />
+        </view>
+
+        <!-- 🌟 核心升级：种子选手设置 -->
+        <view class="seed-section">
+          <text class="seed-label">设置种子选手 (按强弱顺序):</text>
+          <view class="sub-text">种子将按蛇形分布进入各组 (1->A, 2->Last...)</view>
+          
+          <!-- 已选种子列表 -->
+          <view class="seed-list">
+            <block wx:for="{{selectedSeeds}}" wx:key="player_id">
+              <view class="seed-item">
+                <view class="seed-left">
+                  <text class="seed-rank">No.{{index + 1}}</text>
+                  <text class="seed-name">{{item.player_name}}</text>
+                </view>
+                <view class="seed-del" bindtap="removeSeed" data-idx="{{index}}">×</view>
+              </view>
+            </block>
+            <view wx:if="{{selectedSeeds.length === 0}}" class="seed-empty">暂无种子，全员随机</view>
+          </view>
+
+          <!-- 添加种子按钮 -->
+          <picker mode="selector" range="{{unseededNames}}" bindchange="addSeed" disabled="{{unseededNames.length===0}}">
+            <button class="btn-add-seed" disabled="{{unseededNames.length===0}}">
+              + 添加种子 (剩余 {{unseededNames.length}} 人可选)
+            </button>
+          </picker>
+        </view>
+
+        <!-- 出线配置 -->
+        <view class="input-row" style="margin-top:20px;">
+          <text>每组出线人数:</text>
+          <input class="input-small" type="number" value="{{advanceCount}}" bindinput="bindAdvance" />
+        </view>
+
+        <view class="divider"></view>
+        <button class="btn-main" bindtap="startGroupStage">🚀 生成分组并开赛</button>
+      </view>
+    </block>
+
+    <!-- === 普通用户提示 === -->
+    <block wx:else>
+      <view class="desc">
+        当前处于报名阶段，管理员正在配置赛程，请耐心等待开赛。
+      </view>
+    </block>
+  </view>
+
+  <!-- ============================================== -->
+  <!-- 阶段 1: 小组赛进行中 -> 准备进入淘汰赛 -->
+  <!-- ============================================== -->
+  <view class="card" wx:if="{{tour.stage == 1}}">
+    <view class="section-title">📊 第一阶段：小组赛</view>
+    <view class="desc">各小组循环赛正在激烈进行中...</view>
+    
+    <button class="btn-sub" bindtap="viewGroupRank">👀 查看小组积分排名</button>
+
+    <block wx:if="{{isAdmin}}">
+      <view class="divider"></view>
+      <view class="tips-red">管理员操作区：</view>
+      
+      <!-- 插入单场 -->
+      <button class="btn-sub btn-dark" bindtap="goToSingleMatch">➕ 插入单场/友谊赛</button>
+      
+      <!-- 结算 -->
+      <button class="btn-main btn-red" bindtap="startKnockout">⚔️ 结算并生成淘汰树</button>
+    </block>
+  </view>
+
+  <!-- ============================================== -->
+  <!-- 阶段 2: 淘汰赛进行中 -->
+  <!-- ============================================== -->
+  <view class="card" wx:if="{{tour.stage == 2}}">
+    <view class="section-title">👑 第二阶段：淘汰赛</view>
+    <view class="desc">淘汰赛正在进行中，胜者晋级。</view>
+    
+    <button class="btn-sub" bindtap="viewBracket">👀 查看晋级对阵图</button>
+
+    <block wx:if="{{isAdmin}}">
+      <view class="divider"></view>
+      <button class="btn-sub btn-dark" bindtap="goToSingleMatch">➕ 插入单场/附加赛</button>
+    </block>
+  </view>
+   <!-- ============================================== -->
+  <!-- 🔧 永久常驻功能：快速插入单场 -->
+  <!-- ============================================== -->
+  <view class="card" style="margin-top: 20px; border-left: 4px solid #333;">
+    <view class="section-title">🔧 临时加赛 / 友谊赛</view>
+    <view class="desc">无需排阵，直接选取两人进行对决。</view>
+    
+    <button class="btn-sub btn-dark" bindtap="goToSingleMatch">
+      ➕ 插入一场对决
+    </button>
+  </view>
+
+</view>

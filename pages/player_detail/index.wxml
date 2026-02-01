@@ -1,0 +1,49 @@
+<view class="container">
+  <view class="profile-container" wx:if="{{myInfo}}">
+    
+    <!-- 头部卡片 -->
+    <view class="header-card">
+      <view class="user-row">
+        <view class="avatar">{{myInfo.name[0]}}</view>
+        <view class="user-info">
+          <view class="user-name">{{myInfo.name}}</view>
+          <view class="user-id">ID: {{myInfo.player_id}}</view>
+        </view>
+        <view class="score-display">
+          <text class="score-num">{{myInfo.score}}</text>
+          <text class="score-label">积分</text>
+        </view>
+      </view>
+      <view class="signature">{{myInfo.phone || '这个人很懒，什么都没写'}}</view>
+    </view>
+
+    <!-- 数据仪表盘 -->
+    <view class="stats-panel">
+      <view class="stat-box">
+        <view class="val">{{stats.totalMatches}}</view>
+        <view class="key">总场次</view>
+      </view>
+      <view class="stat-box border-lr">
+        <view class="val">{{stats.winCount}}</view>
+        <view class="key">胜场</view>
+      </view>
+      <view class="stat-box">
+        <view class="val gold">{{stats.winRate}}</view>
+        <view class="key">总胜率</view>
+      </view>
+    </view>
+
+    <!-- 荣誉室 -->
+    <view class="trophy-room" wx:if="{{stats.titles.length > 0}}">
+      <view class="panel-title">🏆 荣誉殿堂</view>
+      <view class="trophy-list">
+        <block wx:for="{{stats.titles}}" wx:key="*this">
+          <view class="trophy-tag">
+            <text>🥇 {{item}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+
+  </view>
+</view>

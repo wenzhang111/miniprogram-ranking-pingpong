@@ -1,0 +1,109 @@
+<view class="container">
+  
+  <view class="header-title">📊 社区趣味数据大揭秘</view>
+
+  <!-- 第一排：卷王 & 海王 (左右布局) -->
+  <view class="grid-row">
+    <!-- 卷王 -->
+    <view class="stat-box blue-theme">
+      <view class="box-title">🚜 卷王之王</view>
+      <view class="box-sub">球馆钉子户(总场次)</view>
+      <view class="rank-list">
+        <block wx:for="{{juanwangList}}" wx:key="name">
+          <view class="rank-item">
+            <text class="rank-num index-{{index}}">{{index+1}}</text>
+            <text class="rank-name">{{item.name}}</text>
+            <text class="rank-val">{{item.count}}场</text>
+          </view>
+        </block>
+        <view wx:if="{{juanwangList.length === 0}}" class="empty-text">虚位以待</view>
+      </view>
+    </view>
+
+    <!-- 海王 -->
+    <view class="stat-box purple-theme">
+      <view class="box-title">🤝 乒坛海王</view>
+      <view class="box-sub">交际花(对手数量)</view>
+      <view class="rank-list">
+        <block wx:for="{{haiwangList}}" wx:key="name">
+          <view class="rank-item">
+            <text class="rank-num index-{{index}}">{{index+1}}</text>
+            <text class="rank-name">{{item.name}}</text>
+            <text class="rank-val">{{item.count}}人</text>
+          </view>
+        </block>
+        <view wx:if="{{haiwangList.length === 0}}" class="empty-text">虚位以待</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 第二排：连胜 (横向滚动) -->
+  
+  <!--<view class="full-width-card orange-theme">
+    <view class="card-header">
+      <text class="card-emoji">🔥</text>
+      <view>
+        <view class="card-title">独孤求败 (连胜纪录)</view>
+        <view class="card-desc">近期最高连胜场次统计</view>
+      </view>
+    </view>
+    <scroll-view scroll-x class="streak-scroll">
+      <view class="streak-list">
+        <block wx:for="{{lianshengList}}" wx:key="name">
+          <view class="streak-item">
+            <view class="fire-icon">🔥</view>
+            <text class="s-count">{{item.count}}</text>
+            <text class="s-name">{{item.name}}</text>
+          </view>
+        </block>
+        <view wx:if="{{lianshengList.length===0}}" class="empty-small">暂无3连胜以上记录</view>
+      </view>
+    </scroll-view>
+  </view>-->
+
+  <!-- 第三排：真爱 (列表) -->
+  <view class="full-width-card pink-theme">
+    <view class="card-header">
+      <text class="card-emoji">❤️</text>
+      <view>
+        <view class="card-title">相爱相杀 (真爱榜)</view>
+        <view class="card-desc">不管输赢，我们就是爱在一起打球</view>
+      </view>
+    </view>
+    <view class="cp-list">
+      <block wx:for="{{zhenaiList}}" wx:key="unique">
+        <view class="cp-item">
+          <text class="cp-name">{{item.p1}}</text>
+          <text class="heart">❤️</text>
+          <text class="cp-name">{{item.p2}}</text>
+          <text class="cp-count">({{item.count}}场)</text>
+        </view>
+      </block>
+      <view wx:if="{{zhenaiList.length===0}}" class="empty-small">暂无打满5场的CP</view>
+    </view>
+  </view>
+
+
+
+  <!-- 第五排：福星榜 -->
+  <view class="section">
+    <view class="section-title green">🌟 福星榜 (提款机)</view>
+    <view class="desc">遇到他就稳了，胜率 ≥ 80%</view>
+    
+    <block wx:for="{{fuxingList}}" wx:key="unique">
+      <view class="card">
+        <view class="highlight">
+          <!-- 这里的逻辑是：赢家 的福星是 输家 -->
+          <text class="winner">{{item.winner}}</text>
+          <text class="rel-text">的提款机是</text>
+          <text class="loser" style="text-decoration:none">{{item.loser}}</text>
+        </view>
+        <view class="detail">
+          吃分 {{item.win_count}} 次 (总场次 {{item.total_count}}，胜率 {{item.rate}})
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{fuxingList.length === 0}}" class="empty">暂无福星关系</view>
+  </view>
+
+</view>

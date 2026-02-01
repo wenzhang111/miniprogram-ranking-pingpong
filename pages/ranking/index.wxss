@@ -1,0 +1,37 @@
+page { background-color: #f6f6f6; height: 100vh; display: flex; flex-direction: column;}
+.container { padding: 0; display: flex; flex-direction: column; height: 100%; }
+
+.header-box { background: #07c160; padding: 15px; color: white; text-align: center; }
+.title { font-size: 20px; font-weight: bold; }
+.sub-title { font-size: 12px; opacity: 0.8; margin-top: 5px; }
+
+.list-header { display: flex; padding: 10px 15px; background: white; border-bottom: 1px solid #eee; font-weight: bold; color: #666; font-size: 14px; }
+.col-rank { width: 40px; text-align: center; }
+.col-name { flex: 1; padding-left: 10px; }
+.col-score { width: 60px; text-align: right; }
+
+.list-body { flex: 1; overflow-y: scroll; background: #fff; }
+.list-item { display: flex; align-items: center; padding: 12px 15px; border-bottom: 1px solid #f8f8f8; }
+.index-0 { color: #f5222d; font-weight: bold; font-size: 18px; }
+.index-1 { color: #fa8c16; font-weight: bold; }
+.index-2 { color: #fadb14; font-weight: bold; }
+.name-text { font-size: 15px; color: #333; }
+.id-text { font-size: 11px; color: #999; margin-left: 5px; }
+.col-score { font-size: 16px; font-weight: bold; color: #07c160; }
+.empty-tip { text-align: center; color: #ccc; margin-top: 30px; font-size: 14px; }
+
+.name-row { display: flex; align-items: baseline; }
+.tags-row { display: flex; flex-wrap: wrap; margin-top: 4px; }
+.champion-tag { font-size: 10px; color: #856404; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 4px; padding: 1px 4px; margin-right: 4px; margin-bottom: 2px;}
+
+.footer-panel { background: white; border-top: 1px solid #eee; padding: 10px 15px 20px; box-shadow: 0 -2px 10px rgba(0,0,0,0.03); }
+.tool-row { display: flex; justify-content: space-around; margin-bottom: 15px; }
+.tool-item { display: flex; flex-direction: column; align-items: center; font-size: 12px; color: #666; }
+.tool-item .icon { font-size: 20px; margin-bottom: 2px; }
+.btn-main { background: #07c160; color: white; border-radius: 8px; font-size: 16px; font-weight: bold; width: 100%; margin-bottom: 10px; }
+.admin-zone { border-top: 1px dashed #eee; margin-top: 10px; padding-top: 10px; }
+.admin-title { text-align: center; font-size: 12px; color: #bbb; margin-bottom: 8px; }
+.admin-row { display: flex; gap: 10px; }
+.btn-admin { flex: 1; font-size: 13px; background: #333; color: white; border-radius: 6px; }
+.btn-purple { background: #722ed1; }
+.btn-black { background: #000; color: #ffd700; font-weight: bold; }

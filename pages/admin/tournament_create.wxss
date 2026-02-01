@@ -1,0 +1,70 @@
+page { 
+  background-color: #f6f6f6; 
+  padding: 20px; 
+  box-sizing: border-box;
+}
+
+.container { padding: 0; }
+
+/* 大卡片样式 */
+.card { 
+  background: white; 
+  border-radius: 16px; 
+  padding: 25px 20px; 
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06); 
+}
+
+/* 头部标题 */
+.header { margin-bottom: 25px; text-align: center; }
+.title { font-size: 20px; font-weight: bold; color: #333; margin-bottom: 5px; }
+.subtitle { font-size: 12px; color: #999; }
+
+/* 表单项 */
+.form-group { margin-bottom: 20px; }
+.label { 
+  font-size: 14px; 
+  font-weight: bold; 
+  color: #333; 
+  margin-bottom: 8px; 
+  display: block; 
+}
+
+/* 输入框美化 */
+.input-box { 
+  background-color: #f9f9f9; 
+  border: 1px solid #eee; 
+  border-radius: 8px; 
+  padding: 12px 15px; 
+  font-size: 15px; 
+  color: #333;
+  height: 48px;
+  box-sizing: border-box;
+}
+
+/* 多行文本框美化 */
+.textarea-box { 
+  background-color: #f9f9f9; 
+  border: 1px solid #eee; 
+  border-radius: 8px; 
+  padding: 12px 15px; 
+  font-size: 15px; 
+  color: #333;
+  width: 100%;
+  height: 120px;
+  box-sizing: border-box;
+}
+
+/* 占位符颜色 */
+.ph { color: #ccc; }
+
+/* 按钮样式 */
+.btn-submit { 
+  background: linear-gradient(135deg, #07c160, #0ebf5c); 
+  color: white; 
+  font-weight: bold; 
+  font-size: 16px; 
+  border-radius: 50px; 
+  margin-top: 30px; 
+  box-shadow: 0 4px 10px rgba(7, 193, 96, 0.3);
+}
+.btn-submit:active { opacity: 0.9; transform: scale(0.98); }

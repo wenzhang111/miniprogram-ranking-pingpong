@@ -1,0 +1,23 @@
+<view class="container">
+  <view class="card">
+    <view class="title">添加新球员</view>
+    
+    <view class="input-group">
+      <text class="label">球员编号 (ID)</text>
+      <!-- type="number" 强迫键盘只能输数字 -->
+      <input class="input" type="number" placeholder="例如: 8" bindinput="bindIdInput" />
+    </view>
+
+    <view class="input-group">
+      <text class="label">球员姓名</text>
+      <input class="input" placeholder="例如: 孙颖莎" bindinput="bindNameInput" />
+    </view>
+
+    <view class="input-group">
+      <text class="label">初始积分</text>
+      <input class="input" type="number" value="1000" bindinput="bindScoreInput" />
+    </view>
+  </view>
+
+  <button class="btn-save" bindtap="savePlayer">确认添加</button>
+</view>

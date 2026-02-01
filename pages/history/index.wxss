@@ -1,0 +1,51 @@
+page { background: #f6f6f6; padding: 0; }
+.container { padding: 0; }
+
+/* 顶部 Tab 样式 */
+.tab-header { 
+  display: flex; 
+  background: white; 
+  padding: 0 20px; 
+  margin-bottom: 15px; 
+  position: sticky; 
+  top: 0; 
+  z-index: 99; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+}
+.tab-item { 
+  flex: 1; 
+  text-align: center; 
+  font-size: 15px; 
+  color: #666; 
+  padding: 15px 0; 
+  border-bottom: 3px solid transparent; 
+}
+.tab-item.active { 
+  color: #07c160; 
+  font-weight: bold; 
+  border-bottom: 3px solid #07c160; 
+}
+
+/* 列表容器 */
+.history-list { padding: 0 15px; padding-bottom: 30px; }
+
+/* 卡片样式 */
+.match-card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
+
+.match-header { display: flex; justify-content: space-between; border-bottom: 1px solid #f5f5f5; padding-bottom: 8px; margin-bottom: 12px; font-size: 12px; color: #999; }
+.tag { color: #07c160; background: #e8fce8; padding: 2px 6px; border-radius: 4px; }
+
+.match-body { display: flex; align-items: center; justify-content: space-between; }
+
+.player-row { flex: 1; text-align: center; font-weight: bold; }
+.p-name { display: block; font-size: 16px; color: #333; margin-bottom: 4px; }
+.p-delta { display: block; font-size: 14px; }
+
+/* 胜负颜色 */
+.win .p-name { color: #000; }
+.win .p-delta { color: #07c160; } /* 赢了绿色 */
+.lose .p-name { color: #999; }
+.lose .p-delta { color: #ff4d4f; } /* 输了红色 */
+
+.vs { font-style: italic; color: #eee; font-weight: bold; margin: 0 15px; font-size: 12px; }
+.empty { text-align: center; color: #999; margin-top: 80px; font-size: 14px; }

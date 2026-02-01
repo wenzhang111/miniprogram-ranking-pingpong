@@ -1,0 +1,40 @@
+<view class="container">
+  <view class="header">
+    <view class="title">📂 赛事管理中心</view>
+    <button class="btn-create" bindtap="goToCreate">+ 新赛事</button>
+  </view>
+
+  <scroll-view scroll-y class="list">
+    <block wx:for="{{list}}" wx:key="_id">
+      <view class="card">
+        <!-- 第一行：标题 + 状态 -->
+        <view class="row-top">
+          <view class="tour-title">{{item.title}}</view>
+          <view class="status-tag status-{{item.status}}">
+            {{item.status == 1 ? '🔥 报名中' : (item.status == 2 ? '⚔️ 进行中' : '🏁 已结束')}}
+          </view>
+        </view>
+
+        <!-- 第二行：时间 + 人数 -->
+        <view class="row-info">
+          <text>📅 {{item.date}}</text>
+          <text style="margin-left: 15px;">👥 {{item.count || 0}} 人报名</text>
+        </view>
+        
+        <!-- 第三行：操作按钮组 (核心三位一体) -->
+        <view class="action-row">
+          <!-- 1. 进入总控台 (排阵、分组、晋级) -->
+          <button class="btn-op btn-blue" size="mini" bindtap="goToControl" data-id="{{item._id}}">🎮 进入总控</button>
+          
+          <!-- 2. 管理报名名单 (踢人、补录) -->
+          <button class="btn-op" size="mini" bindtap="goToNames" data-id="{{item._id}}" data-title="{{item.title}}">⚙️ 名单</button>
+          
+          <!-- 3. 删除赛事 -->
+          <view class="del-text" bindtap="deleteTour" data-id="{{item._id}}">🗑️ 删除</view>
+        </view>
+      </view>
+    </block>
+
+    <view wx:if="{{list.length === 0}}" class="empty">暂无赛事，点击右上角发布</view>
+  </scroll-view>
+</view>

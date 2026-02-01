@@ -1,0 +1,62 @@
+<view class="container">
+  <view class="header">
+    <view class="title">⚔️ 晋级对阵图</view>
+    <view class="sub">← 左右滑动查看完整赛程 →</view>
+  </view>
+
+  <!-- 核心：横向滚动容器 -->
+  <scroll-view scroll-x="true" class="bracket-scroll">
+    <view class="bracket-wrapper">
+      
+      <!-- 每一轮是一个竖向的列 -->
+      <block wx:for="{{rounds}}" wx:key="index" wx:for-item="roundMatches" wx:for-index="rIdx">
+        <view class="round-column">
+          <!-- 轮次标题 -->
+          <view class="round-title">{{roundMatches[0].round}}</view>
+          
+          <!-- 这一轮的所有比赛 (使用 Flex 均匀分布) -->
+          <view class="match-list">
+            <block wx:for="{{roundMatches}}" wx:key="_id" wx:for-index="mIdx">
+              
+              <!-- 单个对阵卡片 -->
+              <view class="match-card-wrapper">
+                <view class="match-item {{item.status==1?'finished':''}}" 
+                      bindtap="adminRecord" 
+                      data-idx="{{mIdx}}" 
+                      data-roundidx="{{rIdx}}">
+                  
+                  <!-- 选手A -->
+                  <view class="player-row {{item.winner==item.player1?'win':''}}">
+                    <text class="p-name">{{item.player1_name}}</text>
+                    <text wx:if="{{item.winner==item.player1}}">👑</text>
+                  </view>
+                  
+                  <!-- 选手B -->
+                  <view class="player-row {{item.winner==item.player2?'win':''}}">
+                    <text class="p-name">{{item.player2_name}}</text>
+                    <text wx:if="{{item.winner==item.player2}}">👑</text>
+                  </view>
+
+                  <!-- 状态标记 -->
+                  <view class="score-tag" wx:if="{{item.status==1}}">完</view>
+                </view>
+                
+                <!-- 连接线 (装饰用) -->
+                <view class="connector" wx:if="{{rIdx < rounds.length - 1}}"></view>
+              </view>
+
+            </block>
+          </view>
+        </view>
+      </block>
+
+      <!-- 占位，防止最右边被挡住 -->
+      <view style="width: 50px; flex-shrink: 0;"></view>
+    </view>
+  </scroll-view>
+
+  <!-- 底部按钮 -->
+  <view class="footer-btn" wx:if="{{isAdmin}}">
+    <button class="btn-next" bindtap="generateNextRound">⚡ 生成下一轮</button>
+  </view>
+</view>
