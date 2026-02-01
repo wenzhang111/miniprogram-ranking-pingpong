@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/ranking/index",
+    "pages/profile/index",
+    "pages/index/index",
+    "pages/add/add",
+    "pages/history/index",
+    "pages/stats/index",
+    "pages/player/add",
+    "pages/admin/match_create",
+    "pages/admin/group_create",
+    "pages/admin/match_manage",
+    "pages/admin/tournament_create",
+    "pages/admin/registration_list",
+    "pages/player_detail/index",
+    "pages/admin/tour_control",
+    "pages/bracket/index",
+    "pages/admin/champion_set",
+    "pages/admin/tour_list"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "交大积分网",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#07c160",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "🏠 首页"
+      },
+      {
+        "pagePath": "pages/ranking/index",
+        "text": "🏆 榜单"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "😎 我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
